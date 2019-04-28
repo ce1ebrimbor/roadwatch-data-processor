@@ -12,7 +12,7 @@
 import pandas as pd
 import numpy as np
 import datetime
-from core import process_generic_file
+from .core import process_generic_file
 
 U_DTYPE = {
            'Num_Acc': int, 'place': pd.Int64Dtype(), 'num_veh': str,

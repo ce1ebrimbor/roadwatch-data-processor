@@ -13,7 +13,7 @@
 import pandas as pd
 import numpy as np
 import datetime
-from core import process_generic_file
+from .core import process_generic_file
 
 def put_gps_lat(row):
     """

@@ -12,7 +12,7 @@
 
 import pandas as pd
 import numpy as np
-from core import process_generic_file
+from .core import process_generic_file
 
 V_DTYPE = {
     'Num_Acc': int, 'senc': pd.Int64Dtype(), 'catv':pd.Int64Dtype(),
