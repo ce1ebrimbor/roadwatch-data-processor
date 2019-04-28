@@ -8,8 +8,8 @@ setuptools.setup(
     version="0.1",
     author="Daniel SASU",
     author_email="daniel.sasu@mail.com",
-    description="A library for processing csv files on road crashes in France. \
-                 Build for Project Roadwatch",
+    description="A library for processing csv files on road accidents in France.\
+                 Built for Project Roadwatch",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/daniel-sasu/roadwatch-data-processor",
