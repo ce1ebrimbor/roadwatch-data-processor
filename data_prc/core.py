@@ -37,14 +37,15 @@ class Table:
         :type sep: str
         :param index: index column
         :type index: str
-        :param encoding: latin-1
+        :param encoding: file encoding
         :type encoding: string
-
+        :param col_rename: a list of dict of the form { <old name>: <new name> }
+        :type col_rename: lst
         """
         self.readCSV(path, sep=sep, dtype=dtype, index=index,
                      encoding=encoding, col_rename=col_rename)
 
-    def _col_rename(self, map):
+    def col_rename(self, map):
         """
         Renames columns
 
@@ -67,15 +68,15 @@ class Table:
         :type sep: str
         :param index: index column
         :type index: str
-        :param encoding: latin-1
+        :param encoding: file encoding
         :type encoding: string
-
+        :param col_rename: a list of dict of the form { <old name>: <new name> }
+        :type col_rename: lst
         """
         self.dataFrame = pd.read_csv(
             path, dtype=dtype, encoding=encoding, sep=sep)
         self.validators = {}
         self.modifiers = {}
-        self._col_rename(col_rename)
 
         if index in self.dataFrame.columns.values.tolist():
             self.dataFrame.set_index(index, inplace=True)
@@ -123,3 +124,47 @@ class Table:
 
         """
         self.dataFrame.to_csv(path)
+
+# File processing generic function
+
+
+def process_generic_file(path, index, encoding, sep, dtype, col_rename, cols_formatted, modifiers, drop_cols):
+    """
+    Template function for file processing.
+
+    :param path: csv file path
+    :type path: str
+    :param index: index column
+    :type index: str
+    :param encoding: file encoding
+    :type encoding: string
+    :param sep: column separator
+    :type sep: str
+    :param dtype: data types for columns, the same structure as for pandas
+    :type dtype: dict
+    :param col_rename: a list of dict of the form { <old name>: <new name> }
+    :type col_rename: lst
+    :param cols_formatted: column order
+    :type cols_formatted: lst
+    :param modifiers: a set of modifier functions
+    :type modifiers: dict
+    :param drop_cols: a list of columns to be dropped
+    :type drop_cols: lst
+    :returns: a processed dataFrame
+    :rtype: pandas.DataFrame
+    """
+    t = Table(path=path, sep=sep, dtype=dtype, index=index,
+              encoding=encoding, col_rename=col_rename)
+
+    t.col_rename(col_rename)
+    t.dataFrame.set_index(index, inplace=True)
+
+    for col, m in modifiers.items():
+        t.addModifier(col, m)
+
+    t.process()
+
+    #cleanup
+    t.clean(drop_cols)
+
+    return t.dataFrame[cols_formatted]
