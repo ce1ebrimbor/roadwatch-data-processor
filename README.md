@@ -1,7 +1,7 @@
 Roadwatch Data Processor
 =========================
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Build Status](https://travis-ci.com/daniel-sasu/roadwatch-data-processor.svg?branch=master)](https://travis-ci.com/daniel-sasu/roadwatch-data-processor)
 
 This is a small library build specifically for Project Roadwatch. This packages is used to process, format and clean up the csv data on road accidents in France in order
 to be integrated in a SQL database.   
