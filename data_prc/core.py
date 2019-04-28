@@ -33,7 +33,7 @@ class Table:
         :param dtype: column data types
         :type dtype: dict
         :param sep: column separator
-        :type sep: sep
+        :type sep: str
         :param index: index column
         :type index: str
         :param encoding: latin-1
@@ -64,7 +64,7 @@ class Table:
         :param dtype: column data types
         :type dtype: dict
         :param sep: column separator
-        :type sep: sep
+        :type sep: str
         :param index: index column
         :type index: str
         :param encoding: latin-1
