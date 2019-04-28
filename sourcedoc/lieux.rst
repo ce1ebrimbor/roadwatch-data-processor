@@ -1,6 +1,6 @@
 Lieux
 ======
 
-.. automodule:: core
+.. automodule:: lieux
    :members:
    :noindex:
