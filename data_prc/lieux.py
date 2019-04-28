@@ -12,7 +12,7 @@
 
 import pandas as pd
 import numpy as np
-from core import process_generic_file
+from .core import process_generic_file
 
 L_DTYPE = {
     'Num_Acc': int, 'catr': pd.Int64Dtype()
