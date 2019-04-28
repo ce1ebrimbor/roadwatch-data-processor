@@ -19,6 +19,7 @@ class ColumnNotFoundException(Exception):
     """Exception raised when column is not found"""
     pass
 
+
 class Table:
     """
     A generic table. This class is used to wrap a pandas data frame.
@@ -40,7 +41,8 @@ class Table:
         :type encoding: string
 
         """
-        self.readCSV(path, sep=sep, dtype=dtype, index=index, encoding=encoding, col_rename=col_rename)
+        self.readCSV(path, sep=sep, dtype=dtype, index=index,
+                     encoding=encoding, col_rename=col_rename)
 
     def _col_rename(self, map):
         """
@@ -52,8 +54,6 @@ class Table:
         """
         for m in map:
             self.dataFrame.rename(columns=m, inplace=True)
-
-
 
     def readCSV(self, path, dtype, sep=',', index='num_acc', encoding='latin-1', col_rename=[{'Num_Acc': 'num_acc'}]):
         """
@@ -71,7 +71,8 @@ class Table:
         :type encoding: string
 
         """
-        self.dataFrame = pd.read_csv(path, dtype=dtype, encoding=encoding, sep=sep)
+        self.dataFrame = pd.read_csv(
+            path, dtype=dtype, encoding=encoding, sep=sep)
         self.validators = {}
         self.modifiers = {}
         self._col_rename(col_rename)
@@ -80,7 +81,6 @@ class Table:
             self.dataFrame.set_index(index, inplace=True)
 
         self.columns = self.dataFrame.columns.tolist()
-
 
     def addModifier(self, column, function):
         """
@@ -101,8 +101,8 @@ class Table:
 
         """
         for proc in self.modifiers:
-            self.dataFrame[proc] = self.dataFrame.apply(self.modifiers[proc], axis=1)
-
+            self.dataFrame[proc] = self.dataFrame.apply(
+                self.modifiers[proc], axis=1)
 
     def clean(self, col_lst):
         """
