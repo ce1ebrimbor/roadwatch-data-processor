@@ -1,6 +1,6 @@
-Core
-======
+Departements
+=============
 
-.. automodule:: core
+.. automodule:: departements
    :members:
    :noindex:

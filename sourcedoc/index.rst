@@ -11,6 +11,8 @@ to be integrated in a SQL database.
    caracteristics
    lieux
    vehicules
+   usagers
+   departements
 
 
 
