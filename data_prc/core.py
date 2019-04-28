@@ -11,7 +11,6 @@
 
 """
 
-
 import pandas as pd
 import numpy as np
 
@@ -25,7 +24,7 @@ class Table:
     A generic table. This class is used to wrap a pandas data frame.
     """
 
-    def __init__(self, path, dtype=None, sep=',', index='num_acc', encoding='latin-1'):
+    def __init__(self, path, dtype=None, sep=',', index='num_acc', encoding='latin-1', col_rename=[{'Num_Acc': 'num_acc'}]):
         """
         Initializes a Table using a csv file.
 
@@ -39,11 +38,24 @@ class Table:
         :type index: str
         :param encoding: latin-1
         :type encoding: string
+
         """
-        self.readCSV(path, sep=sep, dtype=dtype, index=index, encoding=encoding)
+        self.readCSV(path, sep=sep, dtype=dtype, index=index, encoding=encoding, col_rename=col_rename)
+
+    def _col_rename(self, map):
+        """
+        Renames columns
+
+        :param map: a list of dict of the form { <old name>: <new name> }
+        :type map: lst
+
+        """
+        for m in map:
+            self.dataFrame.rename(columns=m, inplace=True)
 
 
-    def readCSV(self, path, dtype, sep=',', index='num_acc', encoding='latin-1'):
+
+    def readCSV(self, path, dtype, sep=',', index='num_acc', encoding='latin-1', col_rename=[{'Num_Acc': 'num_acc'}]):
         """
         Initializes a Table using a csv file.
 
@@ -57,30 +69,15 @@ class Table:
         :type index: str
         :param encoding: latin-1
         :type encoding: string
+
         """
         self.dataFrame = pd.read_csv(path, dtype=dtype, encoding=encoding, sep=sep)
         self.validators = {}
         self.modifiers = {}
-        if index == 'num_acc':
-            self.dataFrame.rename(columns={'Num_Acc': 'num_acc'}, inplace=True)
-        else:
-            self.dataFrame.rename(columns={'Code INSEE': 'code_insee'}, inplace=True)
-            self.dataFrame.rename(columns={'Code Postal': 'code_postal'}, inplace=True)
-            self.dataFrame.rename(columns={'Commune': 'commune'}, inplace=True)
-            self.dataFrame.rename(columns={'Département': 'dep'}, inplace=True)
-            self.dataFrame.rename(columns={'Région': 'region'}, inplace=True)
-            self.dataFrame.rename(columns={'Statut': 'statut'}, inplace=True)
-            self.dataFrame.rename(columns={'Altitude Moyenne': 'altitude_moyenne'}, inplace=True)
-            self.dataFrame.rename(columns={'Superficie': 'superficie'}, inplace=True)
-            self.dataFrame.rename(columns={'Population': 'population'}, inplace=True)
-            self.dataFrame.rename(columns={'ID Geofla': 'id_geofla'}, inplace=True)
-            self.dataFrame.rename(columns={'Code Commune': 'code_commune'}, inplace=True)
-            self.dataFrame.rename(columns={'Code Canton': 'code_canton'}, inplace=True)
-            self.dataFrame.rename(columns={'Code Arrondissement': 'code_arrondissement'}, inplace=True)
-            self.dataFrame.rename(columns={'Code Département': 'code_dep'}, inplace=True)
-            self.dataFrame.rename(columns={'Code Région': 'code_region'}, inplace=True)
+        self._col_rename(col_rename)
 
-        self.dataFrame.set_index(index, inplace=True)
+        if index in self.dataFrame.columns.values.tolist():
+            self.dataFrame.set_index(index, inplace=True)
 
         self.columns = self.dataFrame.columns.tolist()
 
@@ -94,10 +91,28 @@ class Table:
         :type column: str
         :param function: a modifier function
         :type function: function
-         
+
         """
         self.modifiers[column] = function
 
+    def process(self):
+        """
+        Applies all the modifiers to dataFrame.
+
+        """
+        for proc in self.modifiers:
+            self.dataFrame[proc] = self.dataFrame.apply(self.modifiers[proc], axis=1)
+
+
+    def clean(self, col_lst):
+        """
+        Drops columns from the table
+
+        :param col_lst: a list of columns to be dropped
+        :type col_lst: lst
+
+        """
+        self.dataFrame = self.dataFrame.drop(col_lst, axis=1)
 
     def writeCSV(self, path):
         """
@@ -105,5 +120,6 @@ class Table:
 
         :param path: a file path
         :type path: str
+
         """
         self.dataFrame.to_csv(path)
