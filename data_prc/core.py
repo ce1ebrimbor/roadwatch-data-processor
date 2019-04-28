@@ -4,7 +4,7 @@
 """
 .. module:: core
    :platform: Unix, Windows
-   :synopsis:
+   :synopsis: Core functionalities for data processing.
 
 .. moduleauthor:: Daniel SASU <daniel.sasu@mail.com>
 
