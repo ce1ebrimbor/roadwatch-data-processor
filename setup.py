@@ -15,7 +15,8 @@ setuptools.setup(
     url="https://github.com/daniel-sasu/roadwatch-data-processor",
     packages=setuptools.find_packages(),
     install_requires=[
-        'pandas==0.24.1'
+        'pandas==0.24.1',
+        'numpy==1.12.1'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
