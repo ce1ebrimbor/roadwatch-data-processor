@@ -4,7 +4,7 @@
 """
 .. module:: caracteristics
    :platform: Unix, Windows
-   :synopsis: A list of modifiers for 'caracteristiques files'
+   :synopsis: A list of modifiers for 'caracteristiques' files
 
 .. moduleauthor:: Daniel SASU <daniel.sasu@mail.com>
 

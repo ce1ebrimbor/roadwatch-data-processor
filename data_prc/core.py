@@ -165,6 +165,9 @@ def process_generic_file(path, index, encoding, sep, dtype, col_rename, cols_for
     t.process()
 
     #cleanup
-    t.clean(drop_cols)
+    t.clean(col_lst=drop_cols)
 
-    return t.dataFrame[cols_formatted]
+    if len(cols_formatted) > 0:
+        return t.dataFrame[cols_formatted]
+    else:
+        return t.dataFrame

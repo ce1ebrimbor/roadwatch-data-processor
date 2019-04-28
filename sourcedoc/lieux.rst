@@ -1,4 +1,4 @@
-Core
+Lieux
 ======
 
 .. automodule:: core

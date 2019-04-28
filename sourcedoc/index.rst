@@ -9,6 +9,7 @@ to be integrated in a SQL database.
 
    core
    caracteristics
+   lieux
 
 
 
