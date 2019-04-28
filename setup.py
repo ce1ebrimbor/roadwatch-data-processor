@@ -14,6 +14,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/daniel-sasu/roadwatch-data-processor",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'pandas==0.24.1'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
