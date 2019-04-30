@@ -1,5 +1,5 @@
 # tests/test.py
-from data_prc.core import *
+from rw_data_proc.core import *
 import unittest
 
 
