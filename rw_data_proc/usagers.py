@@ -22,14 +22,14 @@ U_DTYPE = {
 }
 
 COL_RENAME = [
-    {'Num_Acc': 'num_acc'}
+    {'Num_Acc': 'accident_id'}
 ]
 
 COLS_FORMATTED = []
 U_MODIFIERS = {}
 COLS_DROP = []
 
-def process(path, index='num_acc', encoding='latin-1', sep=',', dtype=U_DTYPE,
+def process(path, index=None, encoding='latin-1', sep=',', dtype=U_DTYPE,
             col_rename=COL_RENAME, cols_formatted=COLS_FORMATTED, modifiers=U_MODIFIERS, drop_cols=COLS_DROP):
     """
     Process a caractristics file.

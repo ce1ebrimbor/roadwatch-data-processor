@@ -26,11 +26,11 @@ L_MODIFIERS = {}
 
 COLS_FORMATTED = []
 
-COL_RENAME = [{'Num_Acc': 'num_acc'}]
+COL_RENAME = [{'Num_Acc': 'accident_id'}]
 
 
 
-def process(path, index='num_acc', encoding='latin-1', sep=',', dtype=L_DTYPE,
+def process(path, index=None, encoding='latin-1', sep=',', dtype=L_DTYPE,
             col_rename=COL_RENAME, cols_formatted=COLS_FORMATTED, modifiers=L_MODIFIERS, drop_cols=COLS_DROP):
     """
     Process a caractristics file.

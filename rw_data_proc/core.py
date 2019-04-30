@@ -157,7 +157,9 @@ def process_generic_file(path, index, encoding, sep, dtype, col_rename, cols_for
               encoding=encoding, col_rename=col_rename)
 
     t.col_rename(col_rename)
-    t.dataFrame.set_index(index, inplace=True)
+    
+    if not index is None:
+        t.dataFrame.set_index(index, inplace=True)
 
     for col, m in modifiers.items():
         t.addModifier(col, m)

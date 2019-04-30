@@ -109,11 +109,11 @@ COLS_DROP = [
 ]
 
 COL_RENAME = [
-    {'Num_Acc': 'num_acc'}
+    {'Num_Acc': 'id'}
 ]
 
 
-def process(path, index='num_acc', encoding='latin-1', sep=',', dtype=C_DTYPE,
+def process(path, index='id', encoding='latin-1', sep=',', dtype=C_DTYPE,
             col_rename=COL_RENAME, cols_formatted=COLS_FORMATTED, modifiers=C_MODIFIERS, drop_cols=COLS_DROP):
     """
     Process a caractristics file.

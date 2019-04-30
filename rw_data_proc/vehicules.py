@@ -20,13 +20,13 @@ V_DTYPE = {
     'manv': pd.Int64Dtype(), 'occutc': pd.Int64Dtype()
 }
 
-COL_RENAME = [{'Num_Acc': 'num_acc'}]
+COL_RENAME = [{'Num_Acc': 'accident_id'}]
 COLS_FORMATTED = []
 V_MODIFIERS = {}
 COLS_DROP = []
 
 
-def process(path, index='num_acc', encoding='latin-1', sep=',', dtype=V_DTYPE,
+def process(path, index=None, encoding='latin-1', sep=',', dtype=V_DTYPE,
             col_rename=COL_RENAME, cols_formatted=COLS_FORMATTED, modifiers=V_MODIFIERS, drop_cols=COLS_DROP):
     """
     Process a caractristics file.
