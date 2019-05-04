@@ -61,7 +61,8 @@ def process(path, index=None, encoding='latin-1', sep=',', dtype=V_DTYPE,
     df = process_generic_file(path, index, encoding, sep, dtype, col_rename,
                                 cols_formatted, modifiers, drop_cols)
 
+
     df.fillna(0, inplace=True)
-    df.astype(V_PYTYPE, inplace=True)
+    df = df.astype(V_PYTYPE)
     df.replace({0: None}, inplace=True)
     return df

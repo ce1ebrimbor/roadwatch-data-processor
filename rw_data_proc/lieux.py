@@ -15,7 +15,7 @@ import numpy as np
 from rw_data_proc.core import process_generic_file
 
 L_DTYPE = {
-    'Num_Acc': int, 'catr': pd.Int64Dtype()
+    'Num_Acc': int
 }
 
 COLS_DROP = [
@@ -61,6 +61,8 @@ def process(path, index=None, encoding='latin-1', sep=',', dtype=L_DTYPE,
                                 cols_formatted, modifiers, drop_cols)
 
     df[ls] = df[ls].fillna(0)
-    df[ls] = df[ls].astype(int)
-    df[ls] = df[ls].replace({0:None})
+    df[ls] = df[ls].astype('int64')
+    df[ls] = df[ls].astype('Int64')
+    df = df.astype(int)
+    df.replace({0:None}, inplace=True)
     return df
