@@ -20,6 +20,12 @@ V_DTYPE = {
     'manv': pd.Int64Dtype(), 'occutc': pd.Int64Dtype()
 }
 
+V_PYTYPE = {
+    'accident_id': int, 'senc': int, 'catv':int,
+    'obs': int, 'obsm': int, 'choc': int,
+    'manv': int, 'occutc': int
+}
+
 COL_RENAME = [{'Num_Acc': 'accident_id'}]
 COLS_FORMATTED = []
 V_MODIFIERS = {}
@@ -56,5 +62,6 @@ def process(path, index=None, encoding='latin-1', sep=',', dtype=V_DTYPE,
                                 cols_formatted, modifiers, drop_cols)
 
     df.fillna(0, inplace=True)
-    df.replace(0, np.nan, inplace=True)
+    df.astype(V_PYTYPE, inplace=True)
+    df.replace({0: None}, inplace=True)
     return df

@@ -61,8 +61,6 @@ def process(path, index=None, encoding='latin-1', sep=',', dtype=L_DTYPE,
                                 cols_formatted, modifiers, drop_cols)
 
     df[ls] = df[ls].fillna(0)
-    df[ls] = df[ls].astype('int64')
-    df[ls] = df[ls].astype('Int64')
-    df[ls] = df[ls].replace(0, np.nan)
-
+    df[ls] = df[ls].astype(int)
+    df[ls] = df[ls].replace({0:None})
     return df

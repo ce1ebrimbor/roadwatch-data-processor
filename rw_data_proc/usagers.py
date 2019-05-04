@@ -21,6 +21,13 @@ U_DTYPE = {
            'locp': pd.Int64Dtype(), 'actp': pd.Int64Dtype(), 'etatp': pd.Int64Dtype()
 }
 
+U_PYTYPE = {
+           'accident_id': int, 'place': int, 'num_veh': str,
+           'catu': int, 'grav': int,'sexe': int,
+           'an_nais': int, 'trajet': int, 'secu': int,
+           'locp': int, 'actp': int, 'etatp': int
+}
+
 COL_RENAME = [
     {'Num_Acc': 'accident_id'}
 ]
@@ -58,6 +65,8 @@ def process(path, index=None, encoding='latin-1', sep=',', dtype=U_DTYPE,
     df = process_generic_file(path, index, encoding, sep, dtype, col_rename,
                                 cols_formatted, modifiers, drop_cols)
 
-    df.replace(0, np.nan, inplace=True)
+    df.fillna(0, inplace=True)
+    df.astype(U_PYTYPE, inplace=True)
+    df.replace({0: None}, inplace=True)
 
     return df

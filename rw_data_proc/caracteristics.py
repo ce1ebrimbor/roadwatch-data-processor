@@ -112,6 +112,10 @@ COL_RENAME = [
     {'Num_Acc': 'id'}
 ]
 
+C_PYTYPE = {
+    'id': int, 'dep': str, 'atm': int,
+    'col': int, 'int': int
+}
 
 def process(path, index='id', encoding='latin-1', sep=',', dtype=C_DTYPE,
             col_rename=COL_RENAME, cols_formatted=COLS_FORMATTED, modifiers=C_MODIFIERS, drop_cols=COLS_DROP):
@@ -139,5 +143,11 @@ def process(path, index='id', encoding='latin-1', sep=',', dtype=C_DTYPE,
     :returns: a processed dataFrame
     :rtype: pandas.DataFrame
     """
-    return process_generic_file(path, index, encoding, sep, dtype, col_rename,
+    df = process_generic_file(path, index, encoding, sep, dtype, col_rename,
                                 cols_formatted, modifiers, drop_cols)
+    df.reset_index(inplace=True)
+    df.fillna(0, inplace=True)
+    df.astype(C_PYTYPE, inplace=True)
+    df.replace({0: None}, inplace=True)
+
+    return df

@@ -62,5 +62,4 @@ def process(path):
 
 
         df = pd.DataFrame(data=deps)
-        df.set_index('id', inplace=True)
         return df
