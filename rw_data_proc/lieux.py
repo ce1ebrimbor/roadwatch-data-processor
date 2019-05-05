@@ -56,13 +56,13 @@ def process(path, index=None, encoding='latin-1', sep=',', dtype=L_DTYPE,
     :returns: a processed dataFrame
     :rtype: pandas.DataFrame
     """
-    ls = ['voie', 'circ', 'nbv', 'pr', 'pr1', 'plan', 'surf', 'infra', 'situ', 'vosp', 'prof']
+    ls = ['accident_id', 'catr', 'voie', 'circ', 'nbv', 'pr', 'pr1', 'plan', 'surf', 'infra', 'situ', 'vosp', 'prof']
     df = process_generic_file(path, index, encoding, sep, dtype, col_rename,
                                 cols_formatted, modifiers, drop_cols)
 
     df[ls] = df[ls].fillna(0)
     df[ls] = df[ls].astype('int64')
     df[ls] = df[ls].astype('Int64')
-    df = df.astype(int)
+    df[ls] = df[ls].astype(int)
     df.replace({0:None}, inplace=True)
     return df
