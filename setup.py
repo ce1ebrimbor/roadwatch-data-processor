@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="roadwatch-data-processor",
-    version="0.2.5",
+    version="0.2.6",
     author="Daniel SASU",
     author_email="daniel.sasu@mail.com",
     description="A library for processing csv files on road accidents in France.\
