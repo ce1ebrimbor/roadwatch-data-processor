@@ -147,7 +147,7 @@ def process(path, index='id', encoding='latin-1', sep=',', dtype=C_DTYPE,
                                 cols_formatted, modifiers, drop_cols)
     df.reset_index(inplace=True)
     df.fillna(0, inplace=True)
-    df.astype(C_PYTYPE, inplace=True)
+    df = df.astype(C_PYTYPE)
     df.replace({0: None}, inplace=True)
 
     return df
