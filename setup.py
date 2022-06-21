@@ -16,7 +16,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     install_requires=[
         'pandas==0.24.1',
-        'numpy==1.12.1'
+        'numpy==1.22.0'
     ],
     classifiers=[
         "Programming Language :: Python :: 3",
